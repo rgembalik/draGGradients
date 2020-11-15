@@ -242,7 +242,13 @@
 
 		if(/#code=(.+)/.test(location.hash)) {
 			let code = /#code=(.+)/.exec(location.hash)[1];
-			window.localStorage.setItem('value', atob(code));
+			try {
+				JSON.parse(atob(code));
+				window.localStorage.setItem('value', atob(code));
+			} catch (e) {
+				console.error(e)
+				console.warn("We couldn't parse the code parameter, so we won't replace the localStorage value");
+			}
 		}
 
 		/*
