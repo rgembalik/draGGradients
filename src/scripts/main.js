@@ -1,12 +1,21 @@
-
-
-
-
-
 ;(function(window) {
     
     'use strict';
 
+
+    if ('replaceState' in history) { // Yay, supported!
+        window.replaceHash = function(newhash) {
+            if ((''+newhash).charAt(0) !== '#') newhash = '#' + newhash;
+            history.replaceState('', '', newhash);
+        }
+    } else {
+        var hash = location.hash;
+        window.replaceHash = function(newhash) {
+            if (location.hash !== hash) history.back();
+            location.hash = newhash;
+        };
+
+    }
 
     // General functions
 
@@ -112,6 +121,7 @@
         bgColor = document.getElementById('bg-color'),
         pointsOp = document.getElementById('points-op'),
         exportCode = document.getElementById('export_code'),
+        shareLink = document.getElementById('share_link'),
         generatedCode = document.getElementById('generated_code'),
         popupCode = document.getElementById('popup-code'),
         popupQ = document.getElementById('popup-q'),
@@ -273,6 +283,8 @@
         obj.bg = bgColor.value;
         // console.log(obj)
         localStorage.setItem('value', JSON.stringify(obj));
+        shareLink.setAttribute('href', '#code=' + btoa(JSON.stringify(obj)));
+        replaceHash('#code=' + btoa(JSON.stringify(obj)))
     }
 
 

@@ -118,6 +118,20 @@ body {
   &:hover { path { fill:rgba(white,0.85); } }
 }
 
+#share_link {
+  width: 23px;
+  height: 23px;
+  padding: 3px;
+  position: absolute;
+  top: 5px;
+  right: 65px;
+  opacity: .4;
+
+  &:hover{
+    opacity: 1;
+  }
+}
+
 input:focus, input:active { outline:none;}
 
 .add {

@@ -17,6 +17,9 @@
 	 <!--  <span draggable="true" class="dragme" id="d1" data-colour="#ffffff" data-deep="50%"></span> -->
 		
 		<!-- Nodes -->
+		<a href="#code=x" onclick="return false" id="share_link">
+			<img src="//s.svgbox.net/hero-outline.svg?fill=ffffff&ic=share">
+		</a>
 		<a href="#" onclick="return false" id="export_code">
 			<svg viewBox="0 0 32 32">
 		  <path d="M17.063 0l-.031.156-5 22-.188.844h3.094l.031-.156 5-22 .188-.844h-3.094zm-7.063 3l-.406.313-9 7-.594.469v1.438l.594.469 9 7 .406.313v-3.781l-6.063-4.719 6.063-4.719v-3.781zm12 0v3.781l6.063 4.719-6.063 4.719v3.781l.406-.313 9-7 .594-.469v-1.438l-.594-.469-9-7-.406-.313z"
@@ -236,6 +239,11 @@
         }
 		}
 
+
+		if(/#code=(.+)/.test(location.hash)) {
+			let code = /#code=(.+)/.exec(location.hash)[1];
+			window.localStorage.setItem('value', atob(code));
+		}
 
 		/*
 		 * 

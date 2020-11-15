@@ -22,7 +22,7 @@ gulp.task('styles', function(){
 
 
 gulp.task('scripts', function(){
-	return gulp.src('src/scripts/**/*.js')
+	return gulp.src(['src/scripts/ZeroClipboard.js', 'src/scripts/**/*.js'])
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 		.pipe(concat('main.js'))
